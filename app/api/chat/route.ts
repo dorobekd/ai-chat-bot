@@ -1,17 +1,24 @@
-import { openai } from "@ai-sdk/openai";
+import { MODELS } from "@/app/model";
 import { Message, streamText } from "ai";
 
 type RequestData = {
     messages: Message[];
+    model: keyof typeof MODELS;
   };
 
 export const POST = async (req: Request) => {
-    const { messages }: RequestData = await req.json();
+    const { messages, model: selectedModel }: RequestData = await req.json();
   
+    const model = MODELS[selectedModel]
+
     const result = streamText({
-      model: openai("gpt-4o-mini"),
+      model,
       messages,
     });
   
-    return result.toDataStreamResponse();
+    return result.toDataStreamResponse({
+        getErrorMessage(error) {
+          return (error as Error).message; //workaround for error not parsing correctly
+        },
+      });
 }
