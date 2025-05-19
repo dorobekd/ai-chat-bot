@@ -1,5 +1,11 @@
 AI Chatbot leveraging NextJS and OpenAI SDK
 
+Add keys in .env for desired models:
+- OPENAI_API_KEY='openai-api-key-here'
+- ANTHROPIC_API_KEY='anthropic-api-key-here'
+- DEEPSEEK_API_KEY='deepseek-api-key-here'
+- GROQ_API_KEY='groq-api-key-here'
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
